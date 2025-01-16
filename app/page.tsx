@@ -1,19 +1,17 @@
 'use client'
 
-import { useLanguage } from '@/contexts/language-context'
-import { translations } from '@/lib/translations'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  const { language } = useLanguage()
-  const t = translations[language].home
+  const router = useRouter()
 
-  return (
-    <div className="p-24">
-      <h1 className="text-4xl font-bold">{t.welcome}</h1>
-      <p className="mt-4 text-lg text-gray-700">
-        {t.subtitle}
-      </p>
-    </div>
-  )
+  useEffect(() => {
+    // Redirect to about page when landing on home page
+    router.push('/about')
+  }, [router])
+
+  // Return null or a loading state while redirecting
+  return null
 }
 
