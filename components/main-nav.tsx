@@ -69,7 +69,7 @@ export function MainNav() {
               </Button>
             </SheetTrigger>
             <SheetContent 
-              side="bottom" 
+              side="top" 
               className="h-[80vh] bg-[#1a1a1a]/95 border-[#2a2a2a]"
             >
               <nav className="flex flex-col space-y-4 mt-6">
@@ -94,25 +94,27 @@ export function MainNav() {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="hidden lg:flex items-center justify-between">
+        <div className="flex items-center gap-8">
           <Logo />
-          <LanguageSwitcher />
+          <nav className="flex items-center gap-6">
+            {routes.map((route) => (
+              <Link
+                key={route.href}
+                href={route.href}
+                className={cn(
+                  'text-base font-medium transition-all hover:text-[#e5e5e5] hover:bg-[#3a3a3a] px-3 py-2 rounded-md',
+                  pathname === route.href 
+                    ? 'text-[#e5e5e5] bg-[#3a3a3a]' 
+                    : 'text-[#a3a3a3]'
+                )}
+              >
+                {route.label}
+              </Link>
+            ))}
+          </nav>
         </div>
-        {routes.map((route) => (
-          <Link
-            key={route.href}
-            href={route.href}
-            className={cn(
-              'text-base font-medium transition-all hover:text-[#e5e5e5] hover:bg-[#3a3a3a] px-3 py-2 rounded-md',
-              pathname === route.href 
-                ? 'text-[#e5e5e5] bg-[#3a3a3a]' 
-                : 'text-[#a3a3a3]'
-            )}
-          >
-            {route.label}
-          </Link>
-        ))}
+        <LanguageSwitcher />
       </div>
     </>
   )

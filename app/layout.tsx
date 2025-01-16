@@ -22,15 +22,24 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen text-slate-200`}>
         <BackgroundDots />
         <LanguageProvider>
-          <div className="flex flex-col lg:flex-row relative">
-            <aside className="w-full lg:w-64 h-auto lg:h-screen fixed top-0 z-10 glass-container border-b lg:border-b-0 lg:border-r border-slate-800/50">
-              <div className="p-4 lg:p-6">
-                <MainNav />
+          <div className="relative p-4 lg:p-6">
+            {/* Floating top navigation */}
+            <nav className="fixed top-4 lg:top-6 left-4 right-4 z-10">
+              <div className="max-w-7xl mx-auto">
+                <div className="rounded-2xl bg-[#1a1a1a]/80 backdrop-blur-xl border border-white/10 shadow-2xl">
+                  <div className="p-4 lg:p-6">
+                    <MainNav />
+                  </div>
+                </div>
               </div>
-            </aside>
-            <main className="w-full lg:ml-64 mt-24 lg:mt-0">
-              <div className="p-4 lg:p-8">
-                {children}
+            </nav>
+
+            {/* Main content */}
+            <main className="pt-32 lg:pt-36">
+              <div className="max-w-7xl mx-auto">
+                <div className="p-4 lg:p-8">
+                  {children}
+                </div>
               </div>
             </main>
           </div>
